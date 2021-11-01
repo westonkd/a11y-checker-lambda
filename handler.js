@@ -11,7 +11,7 @@ const { JSDOM } = jsdom;
 
 module.exports.scan = async (event) => {
   const { window } = new JSDOM(``, { runScripts: "dangerously" });
-  const myLibrary = fs.readFileSync("./browser/tiny-mce-a11y-checker/node-checker.js", { encoding: "utf-8" });
+  const myLibrary = fs.readFileSync("./browser/dist/checker.js/node-checker.js", { encoding: "utf-8" });
   const scriptEl = window.document.createElement("script");
   scriptEl.textContent = myLibrary;
   window.document.body.appendChild(scriptEl);
@@ -22,7 +22,7 @@ module.exports.scan = async (event) => {
       if (!record.body) throw new NoBodyError(record.messageId);
 
       const html = htmlFor(JSON.parse(record.body))
-      console.log(window.checkNode)
+      console.log(window.check)
     });
   } catch (error) {
     logger.warn(error);

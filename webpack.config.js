@@ -1,9 +1,9 @@
 const path = require("path");
 module.exports = {
   mode: "none",
-  entry: "./node_modules/tinymce-a11y-checker/lib/modules/node-checker.js",
+  entry: __dirname + "/browser/src/checker.js",
   output: {
-    path: __dirname + "/browser/tiny-mce-a11y-checker",
+    path: __dirname + "/browser/dist/checker.js",
     filename: "node-checker.js",
   },
   module: {
