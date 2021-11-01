@@ -26,15 +26,15 @@ class A11yDocument {
   }
 
   testElement() {
-    return this.document.getElementById(A11yDocument.id)
+    return this.document.getElementById(A11yDocument.id);
   }
 
   setHtml(html) {
-    return this.testElement().innerHTML = html
+    return (this.testElement().innerHTML = html);
   }
 
   getHtml() {
-    return this.testElement().innerHTML
+    return this.testElement().innerHTML;
   }
 }
 
