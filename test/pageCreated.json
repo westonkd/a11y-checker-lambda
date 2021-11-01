@@ -1,0 +1,16 @@
+{
+  "Records": [
+    {
+      "messageId": "13411274-2df4-44d3-a7e7-ba05b355be1e",
+      "receiptHandle": "AQEBX4iUS6eVyAc0UVau9Rv6pkx4D3tE7E3pLzZQv3ihBhFnHDTo0H/NtNTx28rGFvMSOi0n7Ed8bJAQRiE4Ogyf5JMPpWzt+He/db7S60d5TsYHLX7LR1BGBxLhpTh7vUwZrNCDaA4EC1b9XW0eRoPkV9RZtJyyZSvOMCjpB8QW8wHa1cEfFwrvwt/BEqUNsDNwVPtRt91iRtBOhfpqRs9OrRLx2zWZ/kbJJPjCe1xOt6XKd/6uNT/V17/kcGf2FUkiTDiYfjZA7CDypdLbH94sKTwGcaIqOEYtUlaqJ/9TwjuViYptl8vN99FfCBdqLq+Wj17ylQAMp5LNwrxmwqq7D4yonHNG7CnubyvD7anLyTGJivxLWrr31y4KItJlKgphLZPqnFBPxyNg3DW6XYFSO5eWCaLSLUINHDOVzE0j7LQ=",
+      "body": "{\"metadata\":{\"root_account_uuid\":\"LC6nuzxUST0u7aNHCm0yCjEww5wAtjO5GiSlrHMu\",\"root_account_id\":\"93360000000000001\",\"root_account_lti_guid\":\"LC6nuzxUST0u7aNHCm0yCjEww5wAtjO5GiSlrHMu:canvas-lms\",\"user_login\":\"wdransfield\",\"user_account_id\":\"170000000000002\",\"user_sis_id\":null,\"user_id\":\"170000004597788\",\"time_zone\":\"America/Denver\",\"context_type\":\"Course\",\"context_id\":\"93360000000000224\",\"context_sis_source_id\":null,\"context_account_id\":\"93360000000000001\",\"request_id\":\"b44f041a-9f62-4d9b-a23b-539554513708\",\"session_id\":\"32eb62a4be5f1979ad604675ce9c89a9\",\"hostname\":\"wdransfield.instructure.com\",\"http_method\":\"POST\",\"user_agent\":\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36\",\"client_ip\":\"174.126.230.97\",\"url\":\"https://wdransfield.instructure.com/api/v1/courses/224/pages\",\"referrer\":\"https://wdransfield.instructure.com/courses/224/pages\",\"producer\":\"canvas\",\"event_name\":\"wiki_page_created\",\"event_time\":\"2021-11-01T18:50:48.256Z\"},\"body\":{\"wiki_page_id\":\"93360000000000115\",\"title\":\"asdfas\",\"body\":\"<p>dasdfasfdasdf</p>\"}}",
+      "attributes": [{}],
+      "messageAttributes": [{}],
+      "md5OfMessageAttributes": "00149b3fd3bfcb43e08dc150f29fec7c",
+      "md5OfBody": "07306744112e5057dbd8e96e3f1ccdd2",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:us-west-2:830473435438:canvas-live-events-weston",
+      "awsRegion": "us-west-2"
+    }
+  ]
+}

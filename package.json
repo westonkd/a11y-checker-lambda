@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "jsdom": "^18.0.1",
+    "serverless-bundle": "^5.0.2",
+    "tinymce-a11y-checker": "^3.2.0"
+  }
+}

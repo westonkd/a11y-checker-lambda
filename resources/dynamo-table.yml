@@ -1,0 +1,22 @@
+Resources:
+  IssueTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.tableName}
+      AttributeDefinitions:
+        - AttributeName: Context
+          AttributeType: S
+        - AttributeName: AccountUUID
+          AttributeType: S
+      KeySchema:
+        - AttributeName: Context
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: UserIdIndex
+          KeySchema:
+            - AttributeName: AccountUUID
+              KeyType: HASH
+          Projection:
+            ProjectionType: "KEYS_ONLY"
+      # Set the capacity to auto-scale
+      BillingMode: PAY_PER_REQUEST
