@@ -1,12 +1,14 @@
 {
+  "dependencies": {
+    "tinymce-a11y-checker": "^3.2.0",
+    "jsdom": "^18.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "babel-loader": "^8.2.3",
-    "jsdom": "^18.0.1",
     "serverless": "^2.64.1",
     "serverless-bundle": "^5.0.2",
-    "tinymce-a11y-checker": "^3.2.0",
     "webpack": "^5.61.0",
     "webpack-cli": "^4.9.1"
   },

@@ -24,7 +24,10 @@
           ],
           "Resource": [
             {
-              "Fn::GetAtt": ["IssueTable", "Arn"]
+              "Fn::GetAtt": [
+                "IssueTable",
+                "Arn"
+              ]
             }
           ]
         }
@@ -122,16 +125,27 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": ["lambda.amazonaws.com"]
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
                     },
-                    "Action": ["sts:AssumeRole"]
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": ["-", ["a11y-checker-lambda", "prod", "lambda"]]
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "a11y-checker-lambda",
+                        "prod",
+                        "lambda"
+                      ]
+                    ]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -150,7 +164,9 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": ["logs:PutLogEvents"],
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
                         "Resource": [
                           {
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a11y-checker-lambda-prod*:*:*"
@@ -191,19 +207,6 @@
               }
             }
           },
-          "CommonLibsLambdaLayer": {
-            "Type": "AWS::Lambda::LayerVersion",
-            "Properties": {
-              "Content": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/a11y-checker-lambda/prod/1635790531817-2021-11-01T18:15:31.817Z/commonLibs.zip"
-              },
-              "LayerName": "commonLibs",
-              "CompatibleRuntimes": ["nodejs12.x"]
-            }
-          },
           "ScanLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -211,7 +214,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/a11y-checker-lambda/prod/1635796587976-2021-11-01T19:56:27.976Z/a11y-checker-lambda.zip"
+                "S3Key": "serverless/a11y-checker-lambda/prod/1635865343259-2021-11-02T15:02:23.259Z/a11y-checker-lambda.zip"
               },
               "Handler": "handler.scan",
               "Runtime": "nodejs12.x",
@@ -225,34 +228,39 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": ["IamRoleLambdaExecution", "Arn"]
-              },
-              "Layers": [
-                {
-                  "Ref": "CommonLibsLambdaLayer"
-                }
-              ]
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
             },
-            "DependsOn": ["ScanLogGroup"]
+            "DependsOn": [
+              "ScanLogGroup"
+            ]
           },
-          "ScanLambdaVersionqUGx3kBEsOcclsF42M8tcoJbqtmTOljDQyEUjImEQ": {
+          "ScanLambdaVersionEO51YckqgSQbAjtTzTdrDtRog9Bl4kaVi0hEePQc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ScanLambdaFunction"
               },
-              "CodeSha256": "DyxOriQSnctLnPifFzSn0o4E1kMd3AGcaD27NTEZAN4="
+              "CodeSha256": "WQVQ5oLo4xv5Xa03R9QJGXPn0xA1TKSx9Gz93d5hxwA="
             }
           },
           "ScanEventSourceMappingSQSCanvasliveeventsweston": {
             "Type": "AWS::Lambda::EventSourceMapping",
-            "DependsOn": ["IamRoleLambdaExecution"],
+            "DependsOn": [
+              "IamRoleLambdaExecution"
+            ],
             "Properties": {
               "BatchSize": 10,
               "EventSourceArn": "arn:aws:sqs:us-west-2:830473435438:canvas-live-events-weston",
               "FunctionName": {
-                "Fn::GetAtt": ["ScanLambdaFunction", "Arn"]
+                "Fn::GetAtt": [
+                  "ScanLambdaFunction",
+                  "Arn"
+                ]
               },
               "Enabled": true
             }
@@ -304,33 +312,10 @@
               "Name": "sls-a11y-checker-lambda-prod-ServerlessDeploymentBucketName"
             }
           },
-          "CommonLibsLambdaLayerQualifiedArn": {
-            "Description": "Current Lambda layer version",
-            "Value": {
-              "Ref": "CommonLibsLambdaLayer"
-            },
-            "Export": {
-              "Name": "sls-a11y-checker-lambda-prod-CommonLibsLambdaLayerQualifiedArn"
-            }
-          },
-          "CommonLibsLambdaLayerHash": {
-            "Description": "Current Lambda layer hash",
-            "Value": "083988edf234773dc9b35e217451d2875a1010e2",
-            "Export": {
-              "Name": "sls-a11y-checker-lambda-prod-CommonLibsLambdaLayerHash"
-            }
-          },
-          "CommonLibsLambdaLayerS3Key": {
-            "Description": "Current Lambda layer S3Key",
-            "Value": "serverless/a11y-checker-lambda/prod/1635790531817-2021-11-01T18:15:31.817Z/commonLibs.zip",
-            "Export": {
-              "Name": "sls-a11y-checker-lambda-prod-CommonLibsLambdaLayerS3Key"
-            }
-          },
           "ScanLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ScanLambdaVersionqUGx3kBEsOcclsF42M8tcoJbqtmTOljDQyEUjImEQ"
+              "Ref": "ScanLambdaVersionEO51YckqgSQbAjtTzTdrDtRog9Bl4kaVi0hEePQc"
             },
             "Export": {
               "Name": "sls-a11y-checker-lambda-prod-ScanLambdaFunctionQualifiedArn"
@@ -430,9 +415,6 @@
     "functions": {
       "scan": {
         "handler": "handler.scan",
-        "layers": {
-          "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"ScanLambdaFunction\"][\"Properties\"][\"Layers\"]"
-        },
         "events": [
           {
             "sqs": "arn:aws:sqs:us-west-2:830473435438:canvas-live-events-weston"
@@ -444,7 +426,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ScanLambdaVersionqUGx3kBEsOcclsF42M8tcoJbqtmTOljDQyEUjImEQ"
+        "versionLogicalId": "ScanLambdaVersionEO51YckqgSQbAjtTzTdrDtRog9Bl4kaVi0hEePQc"
       }
     },
     "resources": {
@@ -505,30 +487,16 @@
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
       },
-      "layers": {
-        "commonLibs": {
-          "path": "layer",
-          "compatibleRuntimes": {
-            "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"CommonLibsLambdaLayer\"][\"Properties\"][\"CompatibleRuntimes\"]"
-          },
-          "package": {
-            "artifact": "/home/weston/Gerrit/a11y-checker-lambda/.serverless/commonLibs.zip"
-          },
-          "artifactAlreadyUploaded": true
-        }
-      },
       "resources": {
         "$ref": "$[\"service\"][\"resources\"]"
       }
     },
-    "layers": {
-      "$ref": "$[\"service\"][\"initialServerlessConfig\"][\"layers\"]"
-    },
+    "layers": {},
     "isDashboardMonitoringPreconfigured": false,
     "artifact": "/home/weston/Gerrit/a11y-checker-lambda/.serverless/a11y-checker-lambda.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/a11y-checker-lambda/prod/1635796587976-2021-11-01T19:56:27.976Z",
+    "artifactDirectoryName": "serverless/a11y-checker-lambda/prod/1635865343259-2021-11-02T15:02:23.259Z",
     "artifact": "a11y-checker-lambda.zip"
   }
 }
