@@ -1,6 +1,7 @@
 Resources:
   IssueTable:
     Type: AWS::DynamoDB::Table
+    DeletionPolicy: Delete
     Properties:
       TableName: ${self:custom.tableName}
       AttributeDefinitions:
@@ -8,9 +9,13 @@ Resources:
           AttributeType: S
         - AttributeName: AccountUUID
           AttributeType: S
+        - AttributeName: IssueID
+          AttributeType: S
       KeySchema:
         - AttributeName: Context
           KeyType: HASH
+        - AttributeName: IssueID
+          KeyType: RANGE
       GlobalSecondaryIndexes:
         - IndexName: UserIdIndex
           KeySchema:

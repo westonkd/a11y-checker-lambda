@@ -33,7 +33,7 @@
         }
       ],
       "environment": {
-        "tableName": "prod-issues",
+        "tableName": "dev-issues",
         "foo": "bar"
       },
       "versionFunctions": true,
@@ -113,7 +113,7 @@
           "ScanLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/a11y-checker-lambda-prod-scan"
+              "LogGroupName": "/aws/lambda/a11y-checker-lambda-dev-scan"
             }
           },
           "IamRoleLambdaExecution": {
@@ -142,7 +142,7 @@
                       "-",
                       [
                         "a11y-checker-lambda",
-                        "prod",
+                        "dev",
                         "lambda"
                       ]
                     ]
@@ -158,7 +158,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a11y-checker-lambda-prod*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a11y-checker-lambda-dev*:*"
                           }
                         ]
                       },
@@ -169,7 +169,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a11y-checker-lambda-prod*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/a11y-checker-lambda-dev*:*:*"
                           }
                         ]
                       },
@@ -197,7 +197,7 @@
                   "-",
                   [
                     "a11y-checker-lambda",
-                    "prod",
+                    "dev",
                     {
                       "Ref": "AWS::Region"
                     },
@@ -214,16 +214,16 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/a11y-checker-lambda/prod/1635872083482-2021-11-02T16:54:43.482Z/a11y-checker-lambda.zip"
+                "S3Key": "serverless/a11y-checker-lambda/dev/1635878423813-2021-11-02T18:40:23.813Z/a11y-checker-lambda.zip"
               },
               "Handler": "handler.scan",
               "Runtime": "nodejs12.x",
-              "FunctionName": "a11y-checker-lambda-prod-scan",
+              "FunctionName": "a11y-checker-lambda-dev-scan",
               "MemorySize": 1024,
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "tableName": "prod-issues",
+                  "tableName": "dev-issues",
                   "foo": "bar"
                 }
               },
@@ -238,14 +238,14 @@
               "ScanLogGroup"
             ]
           },
-          "ScanLambdaVersioneixvO0owvzzRY5GpxQNJ4wxivPSKFA1nQiKioEnkg": {
+          "ScanLambdaVersionFLHUfr5IGYJLDhYlbZoQjy7ZNh36jdBUsNVReQi1I": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ScanLambdaFunction"
               },
-              "CodeSha256": "xaIPCBpRIrgRBkg66jciPhKeIlqjTIVToWKGXIpWQuU="
+              "CodeSha256": "88tBCxMx4gNKwOyFvoc3dg+xx+sqOWYfnrjq5bXYy7w="
             }
           },
           "ScanEventSourceMappingSQSCanvasliveeventsweston": {
@@ -267,8 +267,9 @@
           },
           "IssueTable": {
             "Type": "AWS::DynamoDB::Table",
+            "DeletionPolicy": "Delete",
             "Properties": {
-              "TableName": "prod-issues",
+              "TableName": "dev-issues",
               "AttributeDefinitions": [
                 {
                   "AttributeName": "Context",
@@ -277,12 +278,20 @@
                 {
                   "AttributeName": "AccountUUID",
                   "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "IssueID",
+                  "AttributeType": "S"
                 }
               ],
               "KeySchema": [
                 {
                   "AttributeName": "Context",
                   "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "IssueID",
+                  "KeyType": "RANGE"
                 }
               ],
               "GlobalSecondaryIndexes": [
@@ -309,16 +318,16 @@
               "Ref": "ServerlessDeploymentBucket"
             },
             "Export": {
-              "Name": "sls-a11y-checker-lambda-prod-ServerlessDeploymentBucketName"
+              "Name": "sls-a11y-checker-lambda-dev-ServerlessDeploymentBucketName"
             }
           },
           "ScanLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ScanLambdaVersioneixvO0owvzzRY5GpxQNJ4wxivPSKFA1nQiKioEnkg"
+              "Ref": "ScanLambdaVersionFLHUfr5IGYJLDhYlbZoQjy7ZNh36jdBUsNVReQi1I"
             },
             "Export": {
-              "Name": "sls-a11y-checker-lambda-prod-ScanLambdaFunctionQualifiedArn"
+              "Name": "sls-a11y-checker-lambda-dev-ScanLambdaFunctionQualifiedArn"
             }
           }
         }
@@ -408,8 +417,8 @@
       "vpc": {}
     },
     "custom": {
-      "stage": "prod",
-      "tableName": "prod-issues"
+      "stage": "dev",
+      "tableName": "dev-issues"
     },
     "pluginsData": {},
     "functions": {
@@ -420,21 +429,22 @@
             "sqs": "arn:aws:sqs:us-west-2:830473435438:canvas-live-events-weston"
           }
         ],
-        "name": "a11y-checker-lambda-prod-scan",
+        "name": "a11y-checker-lambda-dev-scan",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ScanLambdaVersioneixvO0owvzzRY5GpxQNJ4wxivPSKFA1nQiKioEnkg"
+        "versionLogicalId": "ScanLambdaVersionFLHUfr5IGYJLDhYlbZoQjy7ZNh36jdBUsNVReQi1I"
       }
     },
     "resources": {
       "Resources": {
         "IssueTable": {
           "Type": "AWS::DynamoDB::Table",
+          "DeletionPolicy": "Delete",
           "Properties": {
-            "TableName": "prod-issues",
+            "TableName": "dev-issues",
             "AttributeDefinitions": [
               {
                 "AttributeName": "Context",
@@ -443,12 +453,20 @@
               {
                 "AttributeName": "AccountUUID",
                 "AttributeType": "S"
+              },
+              {
+                "AttributeName": "IssueID",
+                "AttributeType": "S"
               }
             ],
             "KeySchema": [
               {
                 "AttributeName": "Context",
                 "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "IssueID",
+                "KeyType": "RANGE"
               }
             ],
             "GlobalSecondaryIndexes": [
@@ -496,7 +514,7 @@
     "artifact": "/home/weston/Gerrit/a11y-checker-lambda/.serverless/a11y-checker-lambda.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/a11y-checker-lambda/prod/1635872083482-2021-11-02T16:54:43.482Z",
+    "artifactDirectoryName": "serverless/a11y-checker-lambda/dev/1635878423813-2021-11-02T18:40:23.813Z",
     "artifact": "a11y-checker-lambda.zip"
   }
 }

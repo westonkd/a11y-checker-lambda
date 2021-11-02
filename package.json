@@ -3,8 +3,10 @@
     "wcag-element-contrast": "westonkd/wcag-element-contrast"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.39.0",
+    "jsdom": "^18.0.1",
     "tinymce-a11y-checker": "^3.2.0",
-    "jsdom": "^18.0.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
