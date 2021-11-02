@@ -28,6 +28,6 @@ module.exports.scan = function (event, _context, callback) {
     });
   } catch (error) {
     logger.warn(error);
-    throw error;
+    // TODO: re-throw errors that prevent processing
   }
 };
