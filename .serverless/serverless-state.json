@@ -20,7 +20,8 @@
             "dynamodb:GetItem",
             "dynamodb:PutItem",
             "dynamodb:UpdateItem",
-            "dynamodb:DeleteItem"
+            "dynamodb:DeleteItem",
+            "dynamodb:BatchWriteItem"
           ],
           "Resource": [
             {
@@ -214,7 +215,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/a11y-checker-lambda/dev/1635878423813-2021-11-02T18:40:23.813Z/a11y-checker-lambda.zip"
+                "S3Key": "serverless/a11y-checker-lambda/dev/1635880063612-2021-11-02T19:07:43.612Z/a11y-checker-lambda.zip"
               },
               "Handler": "handler.scan",
               "Runtime": "nodejs12.x",
@@ -238,14 +239,14 @@
               "ScanLogGroup"
             ]
           },
-          "ScanLambdaVersionFLHUfr5IGYJLDhYlbZoQjy7ZNh36jdBUsNVReQi1I": {
+          "ScanLambdaVersionQ9CVs8bhp96AYCucaCH3BF6o3SJ60VxgqsZvj7yi7Bk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ScanLambdaFunction"
               },
-              "CodeSha256": "88tBCxMx4gNKwOyFvoc3dg+xx+sqOWYfnrjq5bXYy7w="
+              "CodeSha256": "or4Fg8dboii8U6aEBP1jfIHWv8lYq+I0fZnTl5C6sjk="
             }
           },
           "ScanEventSourceMappingSQSCanvasliveeventsweston": {
@@ -324,7 +325,7 @@
           "ScanLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ScanLambdaVersionFLHUfr5IGYJLDhYlbZoQjy7ZNh36jdBUsNVReQi1I"
+              "Ref": "ScanLambdaVersionQ9CVs8bhp96AYCucaCH3BF6o3SJ60VxgqsZvj7yi7Bk"
             },
             "Export": {
               "Name": "sls-a11y-checker-lambda-dev-ScanLambdaFunctionQualifiedArn"
@@ -435,7 +436,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ScanLambdaVersionFLHUfr5IGYJLDhYlbZoQjy7ZNh36jdBUsNVReQi1I"
+        "versionLogicalId": "ScanLambdaVersionQ9CVs8bhp96AYCucaCH3BF6o3SJ60VxgqsZvj7yi7Bk"
       }
     },
     "resources": {
@@ -514,7 +515,7 @@
     "artifact": "/home/weston/Gerrit/a11y-checker-lambda/.serverless/a11y-checker-lambda.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/a11y-checker-lambda/dev/1635878423813-2021-11-02T18:40:23.813Z",
+    "artifactDirectoryName": "serverless/a11y-checker-lambda/dev/1635880063612-2021-11-02T19:07:43.612Z",
     "artifact": "a11y-checker-lambda.zip"
   }
 }
