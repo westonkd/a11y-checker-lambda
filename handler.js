@@ -8,9 +8,7 @@ const windowSetup = require("./windowSetup");
 const logger = new Logger();
 const { window, testContentId } = windowSetup()
 
-module.exports.scan = function(event, context, callback) {
-  logger.info(event)
-
+module.exports.scan = function(event, _context, callback) {
   try {
     event.Records.forEach((record) => {
       if (!record.body) throw new NoBodyError(record.messageId);
@@ -19,12 +17,11 @@ module.exports.scan = function(event, context, callback) {
       window.document.getElementById(testContentId).innerHTML = html;
 
       function done(results) {
-          console.log(results)
-          callback()
+        console.log(results)
+        callback()
       }
 
-      logger.info(html)
-      window.check(window.document.getElementById("test-content"), done);
+      window.check(window.document.getElementById(testContentId), done);
     });
   } catch (error) {
     logger.warn(error);

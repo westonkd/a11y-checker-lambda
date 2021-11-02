@@ -18,6 +18,8 @@ function windowSetup() {
   // Add a wrapper around content to test
   const testEl = window.document.createElement("div");
   testEl.setAttribute("id", testContentId);
+  testEl.setAttribute("style", 'color: #000000;')
+  window.document.body.style.color = "#000000"
 
   window.document.body.appendChild(testEl);
   window.document.body.appendChild(scriptEl);

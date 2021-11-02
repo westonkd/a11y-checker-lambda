@@ -66,7 +66,6 @@ function checkNode(node, done) {
   };
 
   var checkDone = function checkDone() {
-    console.log('***>', 'checking if done', typeof done)
     if (typeof done === "function") {
       done(errors);
     }
@@ -107,8 +106,6 @@ function walk(node, fn, done) {
   var processBatch = function processBatch() {
     var batchRemaining = WALK_BATCH_SIZE;
 
-    console.log('***> batch remaining:', batchRemaining)
-
     while (stack.length > 0 && batchRemaining > 0) {
       var depth = stack.length - 1;
       var _node = stack[depth].node.childNodes[stack[depth].index];
@@ -129,7 +126,7 @@ function walk(node, fn, done) {
       }
     }
 
-    setTimeout(stack.length > 0 ? () => { console.log('***> processing batch');processBatch() } : () => { console.log('*** >calling done');done() }, 0);
+    setTimeout(stack.length > 0 ? processBatch : done, 0);
   };
 
   processBatch();
@@ -3616,6 +3613,9 @@ var WHITE = {
   b: 255,
   a: 1
 };
+var DEFAULTS = {
+  foreground: 'rgb(0, 0, 0)'
+};
 
 function parseRGBA(str) {
   var pattern = /rgba?\((\d+),\s(\d+),\s(\d+)(,\s([\d\.]+))?\)/;
@@ -3699,7 +3699,7 @@ function backgroundColor(elem) {
 }
 
 function elementColors(elem) {
-  var rgba = parseRGBA(window.getComputedStyle(elem).color);
+  var rgba = parseRGBA(window.getComputedStyle(elem).color || DEFAULTS.foreground);
   var bg = backgroundColor(elem);
   var fg = blendRGBA(bg, rgba);
   return [fg, bg];

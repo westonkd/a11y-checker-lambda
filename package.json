@@ -1,4 +1,7 @@
 {
+  "resolutions": {
+    "wcag-element-contrast": "westonkd/wcag-element-contrast"
+  },
   "dependencies": {
     "tinymce-a11y-checker": "^3.2.0",
     "jsdom": "^18.0.1"
@@ -14,6 +17,7 @@
   },
   "scripts": {
     "build": "npm install && webpack",
-    "invoke": "serverless invoke local --function scan --path ./test/pageCreated.json"
+    "invoke": "serverless invoke local --function scan --path ./test/pageCreated.json",
+    "preinstall": "npx npm-force-resolutions"
   }
 }
