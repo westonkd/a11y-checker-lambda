@@ -193,7 +193,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/a11y-checker-lambda/dev/1635880063612-2021-11-02T19:07:43.612Z/a11y-checker-lambda.zip"
+          "S3Key": "serverless/a11y-checker-lambda/dev/1635883082039-2021-11-02T19:58:02.039Z/a11y-checker-lambda.zip"
         },
         "Handler": "handler.scan",
         "Runtime": "nodejs12.x",
@@ -217,14 +217,14 @@
         "ScanLogGroup"
       ]
     },
-    "ScanLambdaVersionQ9CVs8bhp96AYCucaCH3BF6o3SJ60VxgqsZvj7yi7Bk": {
+    "ScanLambdaVersionz3gwyaMxyp1c2hmrmYW0AvF4H8TDVjcyKyGmYjCTgw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ScanLambdaFunction"
         },
-        "CodeSha256": "or4Fg8dboii8U6aEBP1jfIHWv8lYq+I0fZnTl5C6sjk="
+        "CodeSha256": "SBI9ArbLfhu7URFoxGzYvwt3+/4cF38XCkn+dZ2uIuE="
       }
     },
     "ScanEventSourceMappingSQSCanvasliveeventsweston": {
@@ -303,7 +303,7 @@
     "ScanLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ScanLambdaVersionQ9CVs8bhp96AYCucaCH3BF6o3SJ60VxgqsZvj7yi7Bk"
+        "Ref": "ScanLambdaVersionz3gwyaMxyp1c2hmrmYW0AvF4H8TDVjcyKyGmYjCTgw"
       },
       "Export": {
         "Name": "sls-a11y-checker-lambda-dev-ScanLambdaFunctionQualifiedArn"

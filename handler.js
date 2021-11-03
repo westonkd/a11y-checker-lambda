@@ -20,7 +20,9 @@ module.exports.scan = function (event, _context, callback) {
       window.document.getElementById(testContentId).innerHTML = html;
 
       function done(results) {
-        writeIssues(results, parsedBody, logger);
+        if (results.length > 0) {
+          writeIssues(results, parsedBody, logger);
+        }
         callback();
       }
 

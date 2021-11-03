@@ -5,6 +5,8 @@ function issue(issueObject, eventBody) {
   const { metadata } = eventBody;
   const { root_account_uuid } = metadata;
 
+  console.log(eventBody)
+
   return {
     PutRequest: {
       Item: {
